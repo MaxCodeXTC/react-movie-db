@@ -9,23 +9,11 @@ import LoadButton from "./LoadButton"
 import FilmThumbnail from "./FilmThumbnail"
 import Spinner from "./Spinner"
 
+//hooks
+import { useHomeFetch } from "./hooks/useHomeFetch"
+
 const Home = () => {
-  const [ state, setState ] = useState({ films: [] })
-  const [ loading, setLoading ] = useState(false)
-  const [ error, setError ] = useState(false)
-  console.log(state)
-
-  const handleGetFilms = async (api) => {
-    setError(false)
-    setLoading(true)
-    try {
-      const result = await (await fetch(api)).json()
-    } catch (error) {
-      
-    }
-    setLoading(false)
-  }
-
+  const [{ state, loading, error }, handleGetFilms] = useHomeFetch()
   return (
     <>
       <HeroImage/>
